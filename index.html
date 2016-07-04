@@ -31,11 +31,17 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var database = firebase.database();
 // set
+/*
 firebase.database().ref('users/' + 'testKey').set({
   username: 'billy3',
   email: 'billy3@gmail.com'
 });
+*/
 
+// get
+firebase.database().ref('users/testKey').on('value', function(snapshot) {
+  console.log(snapshot.val());
+});
 
 
 
