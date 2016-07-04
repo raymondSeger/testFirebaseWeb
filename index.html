@@ -30,17 +30,33 @@ firebase.initializeApp(config);
 // Observer Pattern, when the value changes, something will happen
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    alert('user is logged in');
+    //alert('user is logged in');
     console.log(user);
   } else {
     // No user is signed in.
-    alert('no user is logged in');
+    //alert('no user is logged in');
     console.log('no user is logged in');
   }
 });
 
 // try making a new user
-firebase.auth().createUserWithEmailAndPassword('testemail@gmail.com', '123123').catch(function(error) {
+/*
+firebase.auth().createUserWithEmailAndPassword('testemail2@gmail.com', '123123').catch(function(error) {
+  // Handle Errors here.
+  console.log(error);
+});
+*/
+
+// try logging out the current user
+firebase.auth().signOut().then(function() {
+  alert('logged out');
+}, function(error) {
+  console.log(error);
+});
+
+
+// try logging a new user
+firebase.auth().signInWithEmailAndPassword('testemail2@gmail.com', '123123').catch(function(error) {
   // Handle Errors here.
   console.log(error);
 });
