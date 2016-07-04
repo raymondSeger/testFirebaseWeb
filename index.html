@@ -5,9 +5,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Test Firebase Web</title>
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js">
+  </script>
 </head>
 <body>
 	
+<img id="img1" src="" alt="" />
 
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
@@ -29,7 +32,6 @@ firebase.initializeApp(config);
 var storage = firebase.storage();
 var storageRef = storage.ref();
 
-
 var fileName = '1462070121170.jpg';
 var pictureRef = storageRef.child(fileName);
 console.log( pictureRef.fullPath );
@@ -38,6 +40,18 @@ console.log( pictureRef.bucket )
 var picture2Ref = storageRef.child('testFolder1/test.jpg');
 console.log( picture2Ref.fullPath );
 console.log( picture2Ref.bucket );
+
+// get the URL of the picture to put it into IMG tag
+storageRef.child('testFolder1/test.jpg').getDownloadURL().then(function(url) {
+  console.log(url);
+  $('#img1').attr('src', url);
+
+}).catch(function(error) {
+  console.log(error);
+});
+
+
+
 
 // Observer Pattern, when the value changes, something will happen
 firebase.auth().onAuthStateChanged(function(user) {
