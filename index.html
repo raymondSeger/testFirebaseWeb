@@ -13,8 +13,7 @@
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-storage.js"></script>
 
 <script>
 // Initialize Firebase
@@ -25,6 +24,16 @@ var config = {
 	storageBucket	: "project-4354686347802697840.appspot.com",
 };
 firebase.initializeApp(config);
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+var storage = firebase.storage();
+var storageRef = storage.ref();
+
+
+var fileName = '1462070121170.jpg';
+var pictureRef = storageRef.child(fileName);
+console.log( pictureRef.fullPath );
+console.log( pictureRef.bucket )
 
 
 // Observer Pattern, when the value changes, something will happen
@@ -85,12 +94,14 @@ firebase.auth().signInWithRedirect(provider).then(function(result) {
 });
 */
 
+/*
 firebase.auth().signInAnonymously().catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
   // ...
 });
+*/
 </script>
 </body>
 </html>
