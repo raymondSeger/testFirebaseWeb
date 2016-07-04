@@ -25,6 +25,26 @@ var config = {
 	storageBucket	: "project-4354686347802697840.appspot.com",
 };
 firebase.initializeApp(config);
+
+
+// Observer Pattern, when the value changes, something will happen
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    alert('user is logged in');
+    console.log(user);
+  } else {
+    // No user is signed in.
+    alert('no user is logged in');
+    console.log('no user is logged in');
+  }
+});
+
+// try making a new user
+firebase.auth().createUserWithEmailAndPassword('testemail@gmail.com', '123123').catch(function(error) {
+  // Handle Errors here.
+  console.log(error);
+});
+
 </script>
 </body>
 </html>
