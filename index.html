@@ -28,31 +28,50 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// Get a reference to the database service
+var database = firebase.database();
+// set
+firebase.database().ref('users/' + 'testKey').set({
+  username: 'billy3',
+  email: 'billy3@gmail.com'
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // Get a reference to the storage service, which is used to create references in your storage bucket
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var fileName = '1462070121170.jpg';
 var pictureRef = storageRef.child(fileName);
-console.log( pictureRef.fullPath );
-console.log( pictureRef.bucket )
+// console.log( pictureRef.fullPath );
+// console.log( pictureRef.bucket )
 var picture2Ref = storageRef.child('testFolder1/test.jpg');
-console.log( picture2Ref.fullPath );
-console.log( picture2Ref.bucket );
+// console.log( picture2Ref.fullPath );
+// console.log( picture2Ref.bucket );
 
 // get the URL of the picture to put it into IMG tag
 storageRef.child('testFolder1/test.jpg').getDownloadURL().then(function(url) {
-  console.log(url);
+  // console.log(url);
   $('#img1').attr('src', url);
 
 }).catch(function(error) {
-  console.log(error);
+  // console.log(error);
 });
 
 // get the metadata
 storageRef.child('testFolder1/test.jpg').getMetadata().then(function(metadata) {
-  console.log(metadata);
+  // console.log(metadata);
 }).catch(function(error) {
-  console.log(error);
+  // console.log(error);
 });
 
 
